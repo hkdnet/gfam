@@ -18,8 +18,8 @@ var Commands = []cli.Command{
 		Flags:  []cli.Flag{},
 	},
 	{
-		Name:   "generate",
-		Usage:  "",
+		Name:   "get",
+		Usage:  "get KEY",
 		Action: command.CmdGenerate,
 		Flags:  []cli.Flag{},
 	},
