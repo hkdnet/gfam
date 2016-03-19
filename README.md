@@ -1,6 +1,6 @@
 # gfam
 
-Multi factor authentication manager CLI
+A multi factor authentication manager.
 
 ## Description
 
