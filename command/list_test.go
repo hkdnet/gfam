@@ -13,7 +13,7 @@ func TestYamlToList(t *testing.T) {
 	m["hoge"] = "hogehoge"
 	m["fuga"] = "fugafuga"
 	got := yamlToList(m)
-	want := "hoge\nfuga"
+	want := "fuga\nhoge"
 	if got != want {
 		t.Errorf("want: %v but got: %v", want, got)
 	}

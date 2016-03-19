@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"sort"
 
 	"github.com/codegangsta/cli"
 	"github.com/hkdnet/gfam/lib"
@@ -25,5 +26,6 @@ func yamlToList(yaml map[interface{}]interface{}) string {
 		keys[i] = k.(string)
 		i++
 	}
+	sort.Strings(keys)
 	return strings.Join(keys, "\n")
 }
