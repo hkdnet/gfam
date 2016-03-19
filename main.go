@@ -12,7 +12,6 @@ func main() {
 	app.Name = Name
 	app.Version = Version
 	app.Author = "hkdnet"
-	app.Email = ""
 	app.Usage = ""
 
 	app.Flags = GlobalFlags

@@ -1,6 +1,6 @@
 # gotp-manager
 
-
+Multi factor authentication manager CLI
 
 ## Description
 
