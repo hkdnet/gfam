@@ -1,4 +1,4 @@
-# gotp-manager
+# gfam
 
 Multi factor authentication manager CLI
 
@@ -11,12 +11,12 @@ Multi factor authentication manager CLI
 To install, use `go get`:
 
 ```bash
-$ go get -d github.com/hkdnet/gotp-manager
+$ go get -d github.com/hkdnet/gfam
 ```
 
 ## Contribution
 
-1. Fork ([https://github.com/hkdnet/gotp-manager/fork](https://github.com/hkdnet/gotp-manager/fork))
+1. Fork ([https://github.com/hkdnet/gfam/fork](https://github.com/hkdnet/gfam/fork))
 1. Create a feature branch
 1. Commit your changes
 1. Rebase your local changes against the master branch

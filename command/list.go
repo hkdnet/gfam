@@ -3,6 +3,7 @@ package command
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/codegangsta/cli"
 	"gopkg.in/yaml.v2"
@@ -10,6 +11,23 @@ import (
 )
 
 func CmdList(c *cli.Context) {
+	path := getYamlPath()
+	err, yaml := loadYaml(path)
+	if err != nil {
+		fmt.Printf("Error: %v", err)
+		os.Exit(1)
+	}
+	fmt.Println(yamlToList(yaml))
+}
+
+func yamlToList(yaml map[interface{}]interface{}) string {
+	keys := make([]string, len(yaml))
+	i := 0
+	for k := range yaml {
+		keys[i] = k.(string)
+		i++
+	}
+	return strings.Join(keys, "\n")
 }
 
 func loadYaml(path string) (error, map[interface{}]interface{}) {
@@ -23,14 +41,13 @@ func loadYaml(path string) (error, map[interface{}]interface{}) {
 	if err != nil {
 		return err, nil
 	}
-	fmt.Printf("%v", m)
 	return nil, m
 }
 
 func getYamlPath() string {
-	path := os.Getenv("GOTP_YAML_PATH")
+	path := os.Getenv("GFAM_YAML_PATH")
 	if path == "" {
-		path = "~/.gotp.yml"
+		path = os.Getenv("HOME") + "/.gfam.yml"
 	}
 	return path
 }
