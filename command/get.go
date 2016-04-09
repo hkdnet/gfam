@@ -13,7 +13,7 @@ func CmdGenerate(c *cli.Context) {
 	if len(args) == 0 {
 		fmt.Fprint(os.Stderr, "get: please specify of which key you'd like to get a mfa value.")
 		os.Exit(2)
-  }
+	}
 	err, yaml := lib.Load()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "LoadError: %v", err)

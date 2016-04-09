@@ -3,8 +3,8 @@ package command
 import (
 	"fmt"
 	"os"
-	"strings"
 	"sort"
+	"strings"
 
 	"github.com/codegangsta/cli"
 	"github.com/hkdnet/gfam/lib"
