@@ -19,6 +19,15 @@ func TestGetHmacHash(t *testing.T) {
 	if !bytes.Equal(got, want) {
 		t.Errorf("want: %v\ngot: %v", want, got)
 	}
+
+	got = getHmacHash(
+		hexToBytes("0x0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"),
+		[]byte("Hi There"),
+	)
+	want = hexToBytes("0xb617318655057264e28bc0b6fb378c8ef146be00")
+	if !bytes.Equal(got, want) {
+		t.Errorf("want: %v\ngot: %v", want, got)
+	}
 }
 
 func TestGetCounter(t *testing.T) {
