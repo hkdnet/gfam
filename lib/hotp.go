@@ -18,6 +18,12 @@ func NewHotpFromString(str string) *Hotp {
 	return ret
 }
 
+func NewHotpFromBytes(bytes []byte) *Hotp {
+	ret := &Hotp{}
+	ret.key = bytes
+	return ret
+}
+
 func (h *Hotp) At(counter int) int {
 	hs := h.hash(counter)
 	sbits := dynamicTrancation(hs)
@@ -27,7 +33,7 @@ func (h *Hotp) At(counter int) int {
 }
 
 func (h *Hotp) hash(counter int) []byte {
-	return getHmacSha1Hash(h.key, intToBytes(counter))
+	return getHmacSha1Hash(h.key, []byte(string(counter)))
 }
 
 func getHmacSha1Hash(key, input []byte) []byte {
@@ -46,7 +52,9 @@ func dynamicTrancation(b []byte) []byte {
 	*/
 	last := b[19]
 	offset := last % 16
-	return b[offset : offset+4]
+	ret := b[offset : offset+4]
+	ret[0] = ret[0] % 127
+	return ret
 	/*
 		p := b[offset : offset+3]
 		ret := ""

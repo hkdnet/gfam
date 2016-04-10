@@ -20,7 +20,8 @@ func TestHotp(t *testing.T) {
 		count: 8 hex40 (used in ootp): 1b3c89f65e HOTP value: (dec6)399871 HOTP value: (dec8)73399871
 		count: 9 hex40 (used in ootp): 1637409809 HOTP value: (dec6)520489 HOTP value: (dec8)45520489
 	*/
-	hotp := NewHotpFromString("0x3132333435363738393031323334353637383930")
+	b := hexToBytes("0x3132333435363738393031323334353637383930")
+	hotp := NewHotpFromBytes(b)
 
 	if got, want := hotp.At(0), 755224; got != want {
 		t.Errorf("want: %v\ngot: %v", want, got)
@@ -41,6 +42,19 @@ func TestGetHmacSha1Hash(t *testing.T) {
 	want = hexToBytes("0xb617318655057264e28bc0b6fb378c8ef146be00")
 	if !bytes.Equal(got, want) {
 		t.Errorf("want: %v\ngot: %v", want, got)
+	}
+}
+
+func TestDynamicTrancation(t *testing.T) {
+	in := hexToBytes("0x1f8698690e02ca16618550ef7f19da8e945b555a")
+	want := hexToBytes("0x50ef7f19")
+	got := dynamicTrancation(in)
+	if !bytes.Equal(got, want) {
+		t.Errorf("want: %v\ngot: %v", want, got)
+	}
+	sn := bytesToInt(got) % 1000000
+	if sn != 872921 {
+		t.Errorf("???")
 	}
 }
 
