@@ -46,7 +46,7 @@ func dynamicTrancation(b []byte) []byte {
 	*/
 	last := b[19]
 	offset := last % 16
-	return b[offset : offset+3]
+	return b[offset : offset+4]
 	/*
 		p := b[offset : offset+3]
 		ret := ""
