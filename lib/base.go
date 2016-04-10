@@ -1,6 +1,8 @@
 package lib
 
 import (
+	"encoding/binary"
+	"math"
 	"strconv"
 	"strings"
 )
@@ -18,5 +20,21 @@ func hexToBytes(hex string) []byte {
 		b, _ := strconv.ParseInt(h, 16, 0)
 		ret = append(ret, byte(b))
 	}
+	return ret
+}
+
+func bytesToInt(b []byte) int {
+	l := len(b)
+	ret := 0
+	for i := l - 1; i >= 0; i-- {
+		base := int(math.Pow(256, float64(l-i-1)))
+		ret += int(b[i]) * base
+	}
+	return ret
+}
+
+func intToBytes(i int) []byte {
+	ret := make([]byte, 4)
+	binary.PutVarint(ret, int64(i))
 	return ret
 }

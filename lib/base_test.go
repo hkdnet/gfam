@@ -16,3 +16,15 @@ func TestHexToBytes(t *testing.T) {
 		t.Errorf("want: %v\ngot: %v", want, got)
 	}
 }
+
+func TestBytesToInt(t *testing.T) {
+	if got, want := bytesToInt([]byte{1}), 1; got != want {
+		t.Errorf("want: %v\ngot: %v", want, got)
+	}
+	if got, want := bytesToInt([]byte{1, 1}), 257; got != want {
+		t.Errorf("want: %v\ngot: %v", want, got)
+	}
+	if got, want := bytesToInt([]byte{1, 255}), 511; got != want {
+		t.Errorf("want: %v\ngot: %v", want, got)
+	}
+}
